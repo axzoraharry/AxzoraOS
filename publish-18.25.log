@@ -1,0 +1,102 @@
+==> Building RELEASE APK (versionCode=105, versionName="18.25")
+JAVA_HOME=/data/data/com.dsharnessmobile.shell/files/usr/lib/jvm/java-17-openjdk  aapt2=/data/data/com.dsharnessmobile.shell/files/usr/bin/aapt2
+==> gradlew :app:assembleRelease
+
+> Configure project :app
+WARNING: The option setting 'android.aapt2FromMavenOverride=/data/data/com.dsharnessmobile.shell/files/usr/bin/aapt2' is experimental.
+
+> Task :app:buildKotlinToolingMetadata UP-TO-DATE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preReleaseBuild UP-TO-DATE
+> Task :app:checkReleaseAarMetadata UP-TO-DATE
+> Task :app:generateReleaseResValues UP-TO-DATE
+> Task :app:mapReleaseSourceSetPaths UP-TO-DATE
+> Task :app:generateReleaseResources UP-TO-DATE
+> Task :app:mergeReleaseResources UP-TO-DATE
+> Task :app:packageReleaseResources UP-TO-DATE
+> Task :app:parseReleaseLocalResources UP-TO-DATE
+> Task :app:createReleaseCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksRelease UP-TO-DATE
+> Task :app:processReleaseMainManifest UP-TO-DATE
+> Task :app:processReleaseManifest UP-TO-DATE
+> Task :app:processReleaseManifestForPackage UP-TO-DATE
+> Task :app:processReleaseResources UP-TO-DATE
+> Task :app:javaPreCompileRelease UP-TO-DATE
+> Task :app:extractProguardFiles UP-TO-DATE
+> Task :app:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :app:mergeReleaseNativeLibs UP-TO-DATE
+> Task :app:stripReleaseDebugSymbols UP-TO-DATE
+> Task :app:extractReleaseNativeSymbolTables UP-TO-DATE
+> Task :app:mergeReleaseNativeDebugMetadata NO-SOURCE
+> Task :app:checkReleaseDuplicateClasses UP-TO-DATE
+> Task :app:desugarReleaseFileDependencies UP-TO-DATE
+> Task :app:mergeReleaseStartupProfile UP-TO-DATE
+> Task :app:mergeExtDexRelease UP-TO-DATE
+> Task :app:mergeReleaseArtProfile UP-TO-DATE
+> Task :app:mergeReleaseShaders UP-TO-DATE
+> Task :app:compileReleaseShaders NO-SOURCE
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :app:mergeReleaseAssets UP-TO-DATE
+> Task :app:compressReleaseAssets UP-TO-DATE
+> Task :app:extractReleaseVersionControlInfo UP-TO-DATE
+> Task :app:optimizeReleaseResources UP-TO-DATE
+> Task :app:collectReleaseDependencies UP-TO-DATE
+> Task :app:sdkReleaseDependencyData UP-TO-DATE
+> Task :app:validateSigningRelease UP-TO-DATE
+> Task :app:writeReleaseAppMetadata UP-TO-DATE
+> Task :app:writeReleaseSigningConfigVersions UP-TO-DATE
+> Task :app:compileReleaseKotlin
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/CallScreen.kt:293:39 'val Icons.Rounded.VolumeUp: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.VolumeUp.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/GroupCallScreen.kt:212:39 'val Icons.Rounded.VolumeUp: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.VolumeUp.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/MainActivity.kt:1557:60 'val Icons.Rounded.ViewList: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.ViewList.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/NearbyScreen.kt:203:36 'val Icons.Rounded.BluetoothSearching: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.BluetoothSearching.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/NearbyScreen.kt:411:74 'val Icons.Rounded.VolumeUp: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.VolumeUp.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/NearbyScreen.kt:536:44 'val Icons.Rounded.InsertDriveFile: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.InsertDriveFile.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/assistant/CommandEngine.kt:332:25 'val activeNetworkInfo: NetworkInfo?' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/assistant/CommandEngine.kt:333:60 'val isConnected: Boolean' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/assistant/CommandEngine.kt:333:76 'val typeName: String!' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/assistant/LocalLlm.kt:4:8 'class LlmInference : Any, AutoCloseable' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/assistant/LocalLlm.kt:30:25 'class LlmInference : Any, AutoCloseable' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/assistant/LocalLlm.kt:55:27 'class LlmInference : Any, AutoCloseable' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/assistant/LocalLlm.kt:61:22 'class LlmInference : Any, AutoCloseable' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/call/CallManager.kt:876:26 'var isSpeakerphoneOn: Boolean' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/call/CallService.kt:281:46 'static field stat_sys_phone_call: Int' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/call/CallService.kt:313:46 'static field stat_sys_phone_call: Int' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/call/CallService.kt:359:46 'static field stat_sys_phone_call: Int' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/call/CallSignaling.kt:288:36 Only safe (?.) or non-null asserted (!!.) calls are allowed on a nullable receiver of type 'kotlin.Any?'.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/nearby/NearbyManager.kt:165:111 'var isSpeakerphoneOn: Boolean' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/nearby/NearbyManager.kt:170:92 'var isSpeakerphoneOn: Boolean' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/nearby/NearbyManager.kt:200:102 'var isSpeakerphoneOn: Boolean' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/nearby/NearbyManager.kt:648:36 'static field STATUS_BLUETOOTH_ERROR: Int' is deprecated. Deprecated in Java.
+
+> Task :app:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :app:generateReleaseLintVitalReportModel
+> Task :app:dexBuilderRelease
+> Task :app:mergeReleaseGlobalSynthetics UP-TO-DATE
+> Task :app:processReleaseJavaRes UP-TO-DATE
+> Task :app:mergeReleaseJavaResource UP-TO-DATE
+> Task :app:lintVitalAnalyzeRelease
+> Task :app:mergeDexRelease
+> Task :app:compileReleaseArtProfile
+> Task :app:packageRelease
+> Task :app:createReleaseApkListingFileRedirect
+
+> Task :app:lintVitalAnalyzeRelease
+Warning: Unable to initialize metrics, ensure /data/data/com.termux/files/home/.android is writable, details: /data/data/com.termux/files/home/.android/analytics.settings (No such file or directory)
+
+> Task :app:lintVitalReportRelease
+> Task :app:lintVitalRelease
+> Task :app:assembleRelease
+
+BUILD SUCCESSFUL in 4m 59s
+49 actionable tasks: 10 executed, 39 up-to-date
+==> Published (served from this device):
+{
+  "versionCode": 105,
+  "versionName": "18.25",
+  "notes": "18.25 — Admin console is now HIDDEN from the front end for privacy. To open it, go to Settings and tap the version line ('Axzora OS v1.0') SEVEN times quickly. Your password works exactly as before.",
+  "file": "axzoraos-18.25.apk"
+}
+
+==> Verify:

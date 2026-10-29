@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The narrowest possible admin policy: locking the screen and nothing else.
+
+    Device admin can grant sweeping powers — wiping the phone, forcing password
+    rules, disabling the camera. Axzora asks for exactly one, so accepting the
+    prompt cannot cost the user anything beyond what they asked for.
+-->
+<device-admin xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-policies>
+        <force-lock />
+    </uses-policies>
+</device-admin>

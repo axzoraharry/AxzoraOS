@@ -1,0 +1,19 @@
+node_modules/
+*.log
+families.json
+wallet.json
+ledger.json
+notices.json
+store/*.axo
+admin_session.json
+deepseek-key.json
+# the admin code lives in the environment now; a file beside the server is a
+# secret waiting to be committed. This folder's DEPLOY.md says "git init &&
+# git add .", so the puddle is closed here too.
+admin-code.json
+.env
+.env.local
+state.json
+
+# OTA APKs are hosted on GitHub Releases, never committed (100MB repo cap)
+update/*.apk

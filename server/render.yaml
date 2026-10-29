@@ -1,0 +1,20 @@
+# Render picks this up automatically, so the web-service settings don't have to
+# be filled in by hand. Import the repo as a Blueprint and everything below is
+# applied for you.
+services:
+  - type: web
+    name: axzora-server
+    runtime: node
+    plan: free
+    # No dependencies to install — the server uses only Node's standard library.
+    buildCommand: ""
+    startCommand: node server.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      # Set this to your own secret in the Render dashboard. Leaving it unset
+      # falls back to the code shipped in the app, which anyone can read out of
+      # the APK.
+      - key: AXZORA_ADMIN_CODE
+        sync: false

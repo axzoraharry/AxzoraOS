@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Android 9+ blocks cleartext HTTP by default.
+
+  The family sync server runs on the user's own laptop over plain HTTP, and its
+  address is a LAN IP that changes between networks (192.168.x.x at home,
+  172.20.10.x on a phone hotspot, 100.x.x.x over Tailscale). Android's
+  network-security-config matches hostnames literally and has no CIDR/subnet
+  support, so per-subnet rules cannot express "any private address" — cleartext
+  has to be permitted at the base config for the self-hosted server to be
+  reachable at all.
+
+  Trade-off: this app makes no other cleartext requests. Map tiles are fetched
+  from OpenStreetMap over HTTPS, which is unaffected by this setting. If you
+  later expose the server publicly, put it behind HTTPS and tighten this file.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

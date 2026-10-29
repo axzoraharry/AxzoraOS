@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Axzora Games</title>
+<style>
+  :root{--accent:#f0a73c;--bg:#0b0f16;--panel:#121a26;--panel2:#0e1622;--ink:#e8eef7;--line:#26344a;--dim:#9fb0c6}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);
+    font-family:'Segoe UI',system-ui,Roboto,sans-serif}
+  .wrap{max-width:600px;margin:0 auto;padding:20px 16px 46px}
+  header{display:flex;align-items:center;justify-content:space-between;margin:8px 0 18px}
+  h1{margin:0;font-size:24px}h1 span{color:var(--accent)}
+  .bal{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:8px 14px;text-align:right}
+  .bal .n{font-size:20px;font-weight:800;color:var(--accent)}
+  .bal .l{font-size:10px;color:var(--dim);letter-spacing:1px}
+  .sec{font-size:11px;letter-spacing:1.4px;color:var(--dim);font-weight:700;margin:22px 4px 10px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px;
+    display:flex;flex-direction:column;gap:8px;min-height:150px;position:relative;overflow:hidden}
+  .card .ico{font-size:34px}
+  .card .t{font-weight:800;font-size:16px}
+  .card .d{font-size:12px;color:var(--dim);flex:1;line-height:1.5}
+  .card .go{background:var(--accent);color:#111;border:none;border-radius:10px;padding:11px;font-weight:800;cursor:pointer;font-size:14px}
+  .card .go.sec{background:#1b2740;color:var(--ink);border:1px solid var(--line)}
+  .card.soon{opacity:.55}
+  .card.soon .go{background:#26344a;color:var(--dim)}
+  .full{grid-column:1 / -1}
+  .badge{position:absolute;top:10px;right:10px;background:rgba(240,167,60,.16);color:var(--accent);
+    font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px}
+  .stakebar{display:flex;gap:6px;margin-top:2px}
+  .stakebar button{flex:1;background:#1b2740;color:var(--ink);border:1px solid var(--line);border-radius:8px;
+    padding:8px 0;font-weight:800;font-size:12px;cursor:pointer}
+  .stakebar button.on{background:var(--accent);color:#111;border-color:var(--accent)}
+  .btnrow{display:flex;gap:8px;margin-top:4px}
+  .btnrow .go{flex:1}
+  #toast{position:fixed;left:0;right:0;bottom:16px;text-align:center;color:var(--accent);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Axzora <span>Games</span></h1>
+    <div class="bal"><div class="n" id="bal">—</div><div class="l">HAPPY PAISA ₴</div></div>
+  </header>
+
+  <div id="resumecard" class="grid" style="display:none;margin-top:14px">
+    <div class="card full" style="background:linear-gradient(135deg,#1f2a1a,#16231a);border-color:#2f5a3a;min-height:0">
+      <div class="t">🎲 Your Ludo seat is being held</div>
+      <div class="d">You left room <b id="rcode" style="color:#7ee2a0"></b> — get back in before the timer runs out.</div>
+      <button class="go" style="background:#30a46c;color:#fff" onclick="G.resume()">Get back in</button>
+    </div>
+  </div>
+
+  <div class="sec">PLAY LUDO WITH FRIENDS</div>
+  <div class="grid">
+    <div class="card full">
+      <div class="badge">UP TO 8 · WIN THE POT</div>
+      <div class="ico">🎲 Ludo</div>
+      <div class="d"><b>Play Online</b> matches you with random players (CPUs fill empty seats in free games). <b>Play with Friends</b> is a private room — friends only, share the 4-letter code. Pick your colour and name in the lobby. Stake Happy Paisa and the winner takes the pot, or play <b>Free</b>.</div>
+      <div class="stakebar" id="stakes"></div>
+      <div class="btnrow">
+        <button class="go" id="quickbtn" onclick="G.quick()">🌐 Play Online</button>
+        <button class="go sec" onclick="G.friends()">👥 With Friends</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">FREE PLAY</div>
+  <div class="grid">
+    <div class="card">
+      <div class="ico">🤖</div><div class="t">Computer</div>
+      <div class="d">2, 3 or 4 players — you vs the computer. Offline, free.</div>
+      <button class="go sec" onclick="G.ai()">Play</button>
+    </div>
+    <div class="card">
+      <div class="ico">📱</div><div class="t">Pass &amp; Play</div>
+      <div class="d">2–4 friends on one phone, taking turns.</div>
+      <button class="go sec" onclick="G.pass()">Play</button>
+    </div>
+    <div class="card">
+      <div class="ico">🌐</div><div class="t">XR Room</div>
+      <div class="d">Step into a 3D room. Voice-controlled.</div>
+      <button class="go sec" onclick="G.xr()">Enter</button>
+    </div>
+  </div>
+
+  <div class="sec">COMING WITH HAPPY PAISA ₴</div>
+  <div class="grid">
+    <div class="card soon"><div class="ico">♟️</div><div class="t">More games</div>
+      <div class="d">Carrom, Chess, Snakes &amp; Ladders — all with Happy Paisa.</div>
+      <button class="go">Soon</button></div>
+    <div class="card soon"><div class="ico">🎯</div><div class="t">Tournaments</div>
+      <div class="d">Weekly Ludo brackets. Climb the board, win the pool.</div>
+      <button class="go">Soon</button></div>
+  </div>
+</div>
+<div id="toast"></div>
+
+<script>
+  const STAKES=[0,10,20,50,100]; let stake=0;
+  const bar=document.getElementById('stakes');
+  STAKES.forEach(v=>{const b=document.createElement('button');b.textContent=v===0?'Free':(v+' ₴');
+    b.onclick=()=>{stake=v;[...bar.children].forEach(c=>c.classList.remove('on'));b.classList.add('on');
+      document.getElementById('quickbtn').textContent = v===0 ? '🌐 Play Online' : ('🌐 Online · '+v+' ₴');};
+    if(v===0)b.classList.add('on');bar.appendChild(b);});
+  function toast(m){const t=document.getElementById('toast');t.textContent=m;clearTimeout(t._t);t._t=setTimeout(()=>t.textContent='',3200);}
+
+  const G={
+    quick(){ if(window.AxzoraGames) AxzoraGames.playFriends(stake); },
+    friends(){ if(window.AxzoraGames) AxzoraGames.playFriends(stake); },
+    ai(){ if(window.AxzoraGames) AxzoraGames.playAI(); },
+    pass(){ if(window.AxzoraGames) AxzoraGames.playPass(); },
+    xr(){ if(window.AxzoraGames) AxzoraGames.openXr(); },
+    resume(){ if(window.AxzoraGames) AxzoraGames.resumeLudo(); }
+  };
+  window.G=G;
+  // A held Ludo seat (the board stores it in localStorage, shared with this page)
+  function heldSeat(){ try{ const s=JSON.parse(localStorage.getItem('ludo.session')||'null'); if(s&&Date.now()-s.ts<25*60*1000) return s; }catch(e){} return null; }
+  function refresh(){ try{ if(window.AxzoraGames) document.getElementById('bal').textContent=AxzoraGames.balance(); }catch(e){}
+    const s=heldSeat(); document.getElementById('resumecard').style.display=s?'grid':'none'; if(s) document.getElementById('rcode').textContent=s.code; }
+  window.refresh=refresh;
+  document.addEventListener('visibilitychange',()=>{ if(!document.hidden) refresh(); });
+  window.addEventListener('focus',refresh);
+  refresh();
+</script>
+</body>
+</html>

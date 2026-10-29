@@ -1,0 +1,618 @@
+{
+  "balances": {
+    "AXZ-AAAA-1111": 7,
+    "AXZ-BBBB-2222": 5,
+    "AXZ-5UTM-YQXE": 48,
+    "AXZ-PS96-KVYX": 500,
+    "AXZ-ADMN-TEST": 11,
+    "AXZ-5MN9-73W3": 99995075,
+    "AXZ-H6AC-KSRR": 5000,
+    "HARRY": 100,
+    "AXZ-ET8C-65WD": 0,
+    "AXZ-BEE2-XH4X": 107,
+    "AXZ-MRHP-STOR": 0,
+    "AXZ-VULN-TEST": 12
+  },
+  "ledger": [
+    {
+      "id": 1,
+      "uid": "AXZ-AAAA-1111",
+      "hp": 10,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785759529900
+    },
+    {
+      "id": 2,
+      "uid": "AXZ-AAAA-1111",
+      "hp": -3,
+      "kind": "transfer_out",
+      "party": "Sara",
+      "note": "lunch",
+      "ts": 1785759529986
+    },
+    {
+      "id": 3,
+      "uid": "AXZ-BBBB-2222",
+      "hp": 3,
+      "kind": "transfer_in",
+      "party": "Amit",
+      "note": "lunch",
+      "ts": 1785759529986
+    },
+    {
+      "id": 4,
+      "uid": "AXZ-BBBB-2222",
+      "hp": 2,
+      "kind": "offline_in",
+      "party": "Amit",
+      "note": "Voucher settled",
+      "ts": 1785759550238,
+      "nonce": "VOUCHER-XYZ"
+    },
+    {
+      "id": 5,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785777727474
+    },
+    {
+      "id": 6,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785777729709
+    },
+    {
+      "id": 7,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785777729889
+    },
+    {
+      "id": 8,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785777730066
+    },
+    {
+      "id": 9,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785777730231
+    },
+    {
+      "id": 10,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785777730421
+    },
+    {
+      "id": 11,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785777730602
+    },
+    {
+      "id": 12,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785777730790
+    },
+    {
+      "id": 13,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785777730990
+    },
+    {
+      "id": 14,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785777731165
+    },
+    {
+      "id": 15,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785777731371
+    },
+    {
+      "id": 16,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785777731558
+    },
+    {
+      "id": 17,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785777731729
+    },
+    {
+      "id": 18,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785780116136
+    },
+    {
+      "id": 19,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785780116277
+    },
+    {
+      "id": 20,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785780116415
+    },
+    {
+      "id": 21,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785780116589
+    },
+    {
+      "id": 22,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785780117148
+    },
+    {
+      "id": 23,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785780117441
+    },
+    {
+      "id": 24,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785780117594
+    },
+    {
+      "id": 25,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785780117736
+    },
+    {
+      "id": 26,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785780756414
+    },
+    {
+      "id": 27,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": -500,
+      "kind": "transfer_out",
+      "party": "thadi bharath",
+      "note": "",
+      "ts": 1785781896355
+    },
+    {
+      "id": 28,
+      "uid": "AXZ-PS96-KVYX",
+      "hp": 500,
+      "kind": "transfer_in",
+      "party": "abhi",
+      "note": "",
+      "ts": 1785781896355
+    },
+    {
+      "id": 29,
+      "uid": "AXZ-ADMN-TEST",
+      "hp": 1,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785782093274
+    },
+    {
+      "id": 30,
+      "uid": "AXZ-ADMN-TEST",
+      "hp": 5,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785782327276
+    },
+    {
+      "id": 31,
+      "uid": "AXZ-ADMN-TEST",
+      "hp": 5,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785782327347
+    },
+    {
+      "id": 32,
+      "uid": "AXZ-5MN9-73W3",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785784979813
+    },
+    {
+      "id": 33,
+      "uid": "AXZ-5MN9-73W3",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785784980008
+    },
+    {
+      "id": 34,
+      "uid": "AXZ-5MN9-73W3",
+      "hp": 25,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785784980167
+    },
+    {
+      "id": 35,
+      "uid": "AXZ-5MN9-73W3",
+      "hp": 100000000,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1785784983945
+    },
+    {
+      "id": 36,
+      "uid": "AXZ-5MN9-73W3",
+      "hp": -5000,
+      "kind": "transfer_out",
+      "party": "abhi",
+      "note": "",
+      "ts": 1785785062966
+    },
+    {
+      "id": 37,
+      "uid": "AXZ-H6AC-KSRR",
+      "hp": 5000,
+      "kind": "transfer_in",
+      "party": "Happy",
+      "note": "",
+      "ts": 1785785062966
+    },
+    {
+      "id": 38,
+      "uid": "HARRY",
+      "hp": 100,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1788534516530
+    },
+    {
+      "id": 39,
+      "uid": "AXZ-ET8C-65WD",
+      "hp": 50,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1788534529495
+    },
+    {
+      "id": 40,
+      "uid": "AXZ-ET8C-65WD",
+      "hp": -10,
+      "kind": "transfer_out",
+      "party": "Happy reddy",
+      "note": "CEO test",
+      "ts": 1788534543526
+    },
+    {
+      "id": 41,
+      "uid": "AXZ-BEE2-XH4X",
+      "hp": 10,
+      "kind": "transfer_in",
+      "party": "Happy Reddy",
+      "note": "CEO test",
+      "ts": 1788534543526
+    },
+    {
+      "id": 42,
+      "uid": "AXZ-ET8C-65WD",
+      "hp": 5,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1788535667061
+    },
+    {
+      "id": 43,
+      "uid": "AXZ-ET8C-65WD",
+      "hp": -3,
+      "kind": "transfer_out",
+      "party": "Happy reddy",
+      "note": "CEO web",
+      "ts": 1788535667090
+    },
+    {
+      "id": 44,
+      "uid": "AXZ-BEE2-XH4X",
+      "hp": 3,
+      "kind": "transfer_in",
+      "party": "Happy Reddy",
+      "note": "CEO web",
+      "ts": 1788535667090
+    },
+    {
+      "id": 45,
+      "uid": "AXZ-ET8C-65WD",
+      "hp": 2,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1788537345084
+    },
+    {
+      "id": 46,
+      "uid": "AXZ-ET8C-65WD",
+      "hp": -1,
+      "kind": "transfer_out",
+      "party": "Happy reddy",
+      "note": "sink test",
+      "ts": 1788730174363
+    },
+    {
+      "id": 47,
+      "uid": "AXZ-BEE2-XH4X",
+      "hp": 1,
+      "kind": "transfer_in",
+      "party": "Happy Reddy",
+      "note": "sink test",
+      "ts": 1788730174363
+    },
+    {
+      "id": 48,
+      "uid": "AXZ-ET8C-65WD",
+      "hp": -43,
+      "kind": "transfer_out",
+      "party": "Happy reddy",
+      "note": "EV charging Ather Grid",
+      "ts": 1788730335075
+    },
+    {
+      "id": 49,
+      "uid": "AXZ-BEE2-XH4X",
+      "hp": 43,
+      "kind": "transfer_in",
+      "party": "Happy Reddy",
+      "note": "EV charging Ather Grid",
+      "ts": 1788730335075
+    },
+    {
+      "id": 50,
+      "uid": "AXZ-ET8C-65WD",
+      "hp": 50,
+      "kind": "mint",
+      "party": "Axzora Treasury",
+      "note": "Minted",
+      "ts": 1788749478908
+    },
+    {
+      "id": 51,
+      "uid": "AXZ-ET8C-65WD",
+      "hp": -50,
+      "kind": "transfer_out",
+      "party": "Happy reddy",
+      "note": "EV charging Ather Grid",
+      "ts": 1788753162775
+    },
+    {
+      "id": 52,
+      "uid": "AXZ-BEE2-XH4X",
+      "hp": 50,
+      "kind": "transfer_in",
+      "party": "Happy Reddy",
+      "note": "EV charging Ather Grid",
+      "ts": 1788753162775
+    },
+    {
+      "id": 53,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": -0.0001,
+      "kind": "transfer_out",
+      "party": "Happy reddy",
+      "note": "",
+      "ts": 1789127070670
+    },
+    {
+      "id": 54,
+      "uid": "AXZ-BEE2-XH4X",
+      "hp": 0.0001,
+      "kind": "transfer_in",
+      "party": "abhi",
+      "note": "",
+      "ts": 1789127070670
+    },
+    {
+      "id": 55,
+      "uid": "AXZ-BEE2-XH4X",
+      "hp": -0.0001,
+      "kind": "transfer_out",
+      "party": "abhi",
+      "note": "",
+      "ts": 1789127070687
+    },
+    {
+      "id": 56,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 0.0001,
+      "kind": "transfer_in",
+      "party": "Happy reddy",
+      "note": "",
+      "ts": 1789127070687
+    },
+    {
+      "id": 57,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": -0.0001,
+      "kind": "transfer_out",
+      "party": "Mr Happy Store",
+      "note": "wire test — real booking payment",
+      "ts": 1789128473796
+    },
+    {
+      "id": 58,
+      "uid": "AXZ-MRHP-STOR",
+      "hp": 0.0001,
+      "kind": "transfer_in",
+      "party": "abhi",
+      "note": "wire test — real booking payment",
+      "ts": 1789128473796
+    },
+    {
+      "id": 59,
+      "uid": "AXZ-MRHP-STOR",
+      "hp": -0.0001,
+      "kind": "transfer_out",
+      "party": "abhi",
+      "note": "wire test — reversal",
+      "ts": 1789128473835
+    },
+    {
+      "id": 60,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": 0.0001,
+      "kind": "transfer_in",
+      "party": "Mr Happy Store",
+      "note": "wire test — reversal",
+      "ts": 1789128473835
+    },
+    {
+      "id": 61,
+      "uid": "AXZ-VULN-TEST",
+      "hp": 5,
+      "kind": "offline_in",
+      "party": "nobody",
+      "note": "Voucher settled",
+      "ts": 1789129425588,
+      "nonce": "probe-nonce-001"
+    },
+    {
+      "id": 62,
+      "uid": "AXZ-VULN-TEST",
+      "hp": 5,
+      "kind": "offline_in",
+      "party": "nobody",
+      "note": "Voucher settled",
+      "ts": 1789129425626,
+      "nonce": "probe-nonce-002"
+    },
+    {
+      "id": 63,
+      "uid": "AXZ-5UTM-YQXE",
+      "hp": -2,
+      "kind": "voucher_out",
+      "party": "Vulnerability probe",
+      "note": "Voucher settled to AXZ-VULN-TEST",
+      "ts": 1789132566699,
+      "nonce": "fix-test-3"
+    },
+    {
+      "id": 64,
+      "uid": "AXZ-VULN-TEST",
+      "hp": 2,
+      "kind": "offline_in",
+      "party": "abhi",
+      "note": "Voucher settled",
+      "ts": 1789132566699,
+      "nonce": "fix-test-3"
+    }
+  ],
+  "ledgerSeq": 65,
+  "spentNonces": {
+    "VOUCHER-XYZ": {
+      "uid": "AXZ-BBBB-2222",
+      "ts": 1785759550238
+    },
+    "probe-nonce-001": {
+      "uid": "AXZ-VULN-TEST",
+      "ts": 1789129425587
+    },
+    "probe-nonce-002": {
+      "uid": "AXZ-VULN-TEST",
+      "ts": 1789129425626
+    },
+    "fix-test-3": {
+      "uid": "AXZ-VULN-TEST",
+      "ts": 1789132566699
+    }
+  }
+}

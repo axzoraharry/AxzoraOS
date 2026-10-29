@@ -1,0 +1,15 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Stylized "A" ring mark for Axzora, centred in the 66x66 safe zone -->
+    <path
+        android:fillColor="#4F8CFF"
+        android:pathData="M54,30 L70,78 L61,78 L57.5,67 L50.5,67 L47,78 L38,78 Z M54,45 L51.5,58 L56.5,58 Z" />
+    <path
+        android:strokeColor="#7DD3FC"
+        android:strokeWidth="3"
+        android:fillColor="#00000000"
+        android:pathData="M54,22 m-26,0 a26,26 0 1,0 52,0 a26,26 0 1,0 -52,0" />
+</vector>

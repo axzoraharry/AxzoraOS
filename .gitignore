@@ -1,0 +1,33 @@
+# Build output
+build/
+.gradle/
+*.apk
+*.aab
+
+# Machine-specific SDK path
+local.properties
+
+# IDE
+.idea/
+*.iml
+.kotlin/
+
+# Server runtime state (regenerated on first run)
+server/families.json
+server/wallet.json
+server/ledger.json
+server/*.log
+server/store/*.axo
+server/node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Release signing — the key and its password must never enter version control.
+*.keystore
+*.jks
+keystore.properties
+
+# API keys for the assistant — never commit a real key to the repo.
+app/src/main/assets/keys.json

@@ -1,0 +1,341 @@
+{
+  "users": {
+    "AXZ-GM32-NDVN": {
+      "uid": "AXZ-GM32-NDVN",
+      "name": "Axzora user",
+      "seen": 1785608184028
+    },
+    "AXZ-TEST-USER": {
+      "uid": "AXZ-TEST-USER",
+      "name": "Priya",
+      "seen": 1785607459148
+    },
+    "AXZ-7TWG-YVWB": {
+      "uid": "AXZ-7TWG-YVWB",
+      "name": "ammu",
+      "seen": 1785607952466
+    },
+    "AXZ-PRIY-A123": {
+      "uid": "AXZ-PRIY-A123",
+      "name": "Priya",
+      "phone": "+919876543210",
+      "seen": 1785622082697
+    },
+    "AXZ-RAVI-B456": {
+      "uid": "AXZ-RAVI-B456",
+      "name": "Ravi",
+      "phone": "",
+      "seen": 1785622082842
+    },
+    "AXZ-76ZM-6MR4": {
+      "uid": "AXZ-76ZM-6MR4",
+      "name": "Axzora user",
+      "phone": "",
+      "seen": 1785622933619
+    },
+    "AXZ-AAAA-1111": {
+      "uid": "AXZ-AAAA-1111",
+      "name": "Amit",
+      "phone": "",
+      "seen": 1785759529811
+    },
+    "AXZ-BBBB-2222": {
+      "uid": "AXZ-BBBB-2222",
+      "name": "Sara",
+      "phone": "",
+      "seen": 1785759529858
+    },
+    "AXZ-CCCC-3333": {
+      "uid": "AXZ-CCCC-3333",
+      "name": "Deepa",
+      "phone": "",
+      "seen": 1785759550190
+    },
+    "AXZ-CALL-AAAA": {
+      "uid": "AXZ-CALL-AAAA",
+      "name": "Amit",
+      "phone": "",
+      "seen": 1785763637136
+    },
+    "AXZ-CALL-BBBB": {
+      "uid": "AXZ-CALL-BBBB",
+      "name": "Sara",
+      "phone": "",
+      "seen": 1785763637195
+    },
+    "AXZ-3ZQT-5838": {
+      "uid": "AXZ-3ZQT-5838",
+      "name": "Axzora user",
+      "phone": "",
+      "seen": 1785783996852
+    },
+    "AXZ-5UTM-YQXE": {
+      "uid": "AXZ-5UTM-YQXE",
+      "name": "abhi",
+      "phone": "",
+      "seen": 1785782743842
+    },
+    "AXZ-5MN9-73W3": {
+      "uid": "AXZ-5MN9-73W3",
+      "name": "Happy",
+      "phone": "",
+      "seen": 1785786730334
+    },
+    "AXZ-TEST-CALR": {
+      "uid": "AXZ-TEST-CALR",
+      "name": "Harry",
+      "phone": "",
+      "seen": 1785779621078
+    },
+    "AXZ-PS96-KVYX": {
+      "uid": "AXZ-PS96-KVYX",
+      "name": "thadi bharath",
+      "phone": "91549",
+      "seen": 1785786720540
+    },
+    "AXZ-CGSZ-9YE3": {
+      "uid": "AXZ-CGSZ-9YE3",
+      "name": "Shreshth",
+      "phone": "",
+      "seen": 1785782006174
+    },
+    "AXZ-8XT9-GNVY": {
+      "uid": "AXZ-8XT9-GNVY",
+      "name": "surender Suri ",
+      "phone": "",
+      "seen": 1785786708366
+    },
+    "AXZ-ADMN-TEST": {
+      "uid": "AXZ-ADMN-TEST",
+      "name": "AdminTest",
+      "phone": "",
+      "seen": 1785782327207
+    },
+    "AXZ-H6AC-KSRR": {
+      "uid": "AXZ-H6AC-KSRR",
+      "name": "abhi",
+      "phone": "",
+      "seen": 1785785386192
+    },
+    "AXZ-VFKM-XAM2": {
+      "uid": "AXZ-VFKM-XAM2",
+      "name": "Axzora user",
+      "phone": "",
+      "seen": 1785784013254
+    },
+    "AXZ-TUXP-4YED": {
+      "uid": "AXZ-TUXP-4YED",
+      "name": "Axzora user",
+      "phone": "",
+      "seen": 1785842313298
+    },
+    "BOB": {
+      "uid": "BOB",
+      "name": "Bob",
+      "phone": "",
+      "seen": 1785867651146
+    },
+    "AL": {
+      "uid": "AL",
+      "name": "Alice",
+      "phone": "",
+      "seen": 1785867651220
+    },
+    "AXZ-TEST-A": {
+      "uid": "AXZ-TEST-A",
+      "name": "User A",
+      "phone": "",
+      "seen": 1786207581749
+    },
+    "AXZ-TEST-B": {
+      "uid": "AXZ-TEST-B",
+      "name": "User B",
+      "phone": "",
+      "seen": 1786207581756
+    },
+    "AXZ-TEST-C": {
+      "uid": "AXZ-TEST-C",
+      "name": "User C",
+      "phone": "",
+      "seen": 1786207581757
+    },
+    "AXZ-TEST-D": {
+      "uid": "AXZ-TEST-D",
+      "name": "User D",
+      "phone": "",
+      "seen": 1786207581761
+    },
+    "AXZ-TEST-E": {
+      "uid": "AXZ-TEST-E",
+      "name": "User E",
+      "phone": "",
+      "seen": 1786207581784
+    },
+    "HA": {
+      "uid": "HA",
+      "name": "HA",
+      "phone": "",
+      "seen": 1787053340829
+    },
+    "HB": {
+      "uid": "HB",
+      "name": "HB",
+      "phone": "",
+      "seen": 1787053341058
+    },
+    "HC": {
+      "uid": "HC",
+      "name": "HC",
+      "phone": "",
+      "seen": 1787053341393
+    },
+    "AXZ-BEE2-XH4X": {
+      "uid": "AXZ-BEE2-XH4X",
+      "name": "Happy reddy",
+      "phone": "",
+      "seen": 1787821474975
+    },
+    "HOST1": {
+      "uid": "HOST1",
+      "name": "Alex",
+      "phone": "",
+      "seen": 1787659863607
+    },
+    "VIEW2": {
+      "uid": "VIEW2",
+      "name": "Vera",
+      "phone": "",
+      "seen": 1787659863620
+    },
+    "AXZ-ET8C-65WD": {
+      "uid": "AXZ-ET8C-65WD",
+      "name": "Happy Reddy",
+      "phone": "+919696969691",
+      "seen": 1789133043460
+    },
+    "AXZ-MRHP-STOR": {
+      "uid": "AXZ-MRHP-STOR",
+      "name": "Mr Happy Store",
+      "phone": "",
+      "seen": 1789127212006
+    },
+    "AXZ-HPTE-ST01": {
+      "uid": "AXZ-HPTE-ST01",
+      "name": "Wire Test (broke)",
+      "phone": "",
+      "seen": 1789128473739
+    },
+    "AXZ-VULN-TEST": {
+      "uid": "AXZ-VULN-TEST",
+      "name": "Vulnerability probe",
+      "phone": "",
+      "seen": 1789129425539
+    }
+  },
+  "inbox": {
+    "AXZ-GM32-NDVN": [],
+    "AXZ-7TWG-YVWB": [],
+    "AXZ-BBBB-2222": [
+      {
+        "id": 4,
+        "from": "AXZ-AAAA-1111",
+        "fromName": "Amit",
+        "hp": 3,
+        "note": "lunch",
+        "ts": 1785759529986,
+        "ledgered": true
+      }
+    ],
+    "AXZ-PS96-KVYX": [],
+    "AXZ-H6AC-KSRR": [],
+    "AXZ-BEE2-XH4X": [
+      {
+        "id": 7,
+        "from": "AXZ-ET8C-65WD",
+        "fromName": "Happy Reddy",
+        "hp": 10,
+        "note": "CEO test",
+        "ts": 1788534543527,
+        "ledgered": true
+      },
+      {
+        "id": 8,
+        "from": "AXZ-ET8C-65WD",
+        "fromName": "Happy Reddy",
+        "hp": 3,
+        "note": "CEO web",
+        "ts": 1788535667090,
+        "ledgered": true
+      },
+      {
+        "id": 9,
+        "from": "AXZ-ET8C-65WD",
+        "fromName": "Happy Reddy",
+        "hp": 1,
+        "note": "sink test",
+        "ts": 1788730174363,
+        "ledgered": true
+      },
+      {
+        "id": 10,
+        "from": "AXZ-ET8C-65WD",
+        "fromName": "Happy Reddy",
+        "hp": 43,
+        "note": "EV charging Ather Grid",
+        "ts": 1788730335075,
+        "ledgered": true
+      },
+      {
+        "id": 11,
+        "from": "AXZ-ET8C-65WD",
+        "fromName": "Happy Reddy",
+        "hp": 50,
+        "note": "EV charging Ather Grid",
+        "ts": 1788753162776,
+        "ledgered": true
+      },
+      {
+        "id": 12,
+        "from": "AXZ-5UTM-YQXE",
+        "fromName": "abhi",
+        "hp": 0.0001,
+        "note": "",
+        "ts": 1789127070670,
+        "ledgered": true
+      }
+    ],
+    "AXZ-5UTM-YQXE": [
+      {
+        "id": 13,
+        "from": "AXZ-BEE2-XH4X",
+        "fromName": "Happy reddy",
+        "hp": 0.0001,
+        "note": "",
+        "ts": 1789127070687,
+        "ledgered": true
+      },
+      {
+        "id": 15,
+        "from": "AXZ-MRHP-STOR",
+        "fromName": "Mr Happy Store",
+        "hp": 0.0001,
+        "note": "wire test — reversal",
+        "ts": 1789128473835,
+        "ledgered": true
+      }
+    ],
+    "AXZ-MRHP-STOR": [
+      {
+        "id": 14,
+        "from": "AXZ-5UTM-YQXE",
+        "fromName": "abhi",
+        "hp": 0.0001,
+        "note": "wire test — real booking payment",
+        "ts": 1789128473796,
+        "ledgered": true
+      }
+    ]
+  },
+  "transferSeq": 16,
+  "stakes": {}
+}

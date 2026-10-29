@@ -1,0 +1,6 @@
+{
+  "versionCode": 208,
+  "versionName": "18.128",
+  "notes": "18.128 \u2014 the stack now actually stays up. KeepAliveService (the app's foreground service, the one supervisor Android cannot reclaim) previously watched only :3000 and :8787 and NEVER restarted the keeper or the watchdog. When both supervisors died, 15 of 17 services were left unsupervised and stayed down permanently \u2014 which is why 'servers are self-healing' kept being untrue. It now calls axzora-ensure.sh every ~30s (immediately when the core is down), which sweeps all 17 services AND restarts dead supervisors. Logic lives in a shell script so it can be fixed without an APK rebuild.",
+  "file": "axzoraos-18.128.apk"
+}

@@ -1,0 +1,50 @@
+Starting a Gradle Daemon, 7 busy and 1 incompatible and 1 stopped Daemons could not be reused, use --status for details
+
+> Configure project :app
+Unable to initialize metrics, ensure /data/data/com.termux/files/home/.android is writable, details: /data/data/com.termux/files/home/.android/analytics.settings (No such file or directory)
+WARNING: The option setting 'android.aapt2FromMavenOverride=/data/data/com.dsharnessmobile.shell/files/usr/bin/aapt2' is experimental.
+
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:processDebugMainManifest
+> Task :app:processDebugManifest
+> Task :app:processDebugManifestForPackage
+> Task :app:processDebugResources
+> Task :app:compileDebugKotlin
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/CallScreen.kt:293:39 'val Icons.Rounded.VolumeUp: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.VolumeUp.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/GroupCallScreen.kt:212:39 'val Icons.Rounded.VolumeUp: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.VolumeUp.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/MainActivity.kt:1749:60 'val Icons.Rounded.ViewList: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.ViewList.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/NearbyScreen.kt:203:36 'val Icons.Rounded.BluetoothSearching: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.BluetoothSearching.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/NearbyScreen.kt:411:74 'val Icons.Rounded.VolumeUp: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.VolumeUp.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/NearbyScreen.kt:536:44 'val Icons.Rounded.InsertDriveFile: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.InsertDriveFile.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/assistant/CommandEngine.kt:574:25 'val activeNetworkInfo: NetworkInfo?' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/assistant/CommandEngine.kt:575:60 'val isConnected: Boolean' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/assistant/CommandEngine.kt:575:76 'val typeName: String!' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/assistant/LocalLlm.kt:4:8 'class LlmInference : Any, AutoCloseable' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/assistant/LocalLlm.kt:30:25 'class LlmInference : Any, AutoCloseable' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/assistant/LocalLlm.kt:55:27 'class LlmInference : Any, AutoCloseable' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/assistant/LocalLlm.kt:61:22 'class LlmInference : Any, AutoCloseable' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/call/CallManager.kt:876:26 'var isSpeakerphoneOn: Boolean' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/call/CallService.kt:281:46 'static field stat_sys_phone_call: Int' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/call/CallService.kt:313:46 'static field stat_sys_phone_call: Int' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/call/CallService.kt:359:46 'static field stat_sys_phone_call: Int' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/call/CallSignaling.kt:288:36 Only safe (?.) or non-null asserted (!!.) calls are allowed on a nullable receiver of type 'kotlin.Any?'.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/ceo/KnowledgeGraph.kt:58:77 Only safe (?.) or non-null asserted (!!.) calls are allowed on a nullable receiver of type 'org.json.JSONObject?'.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/nearby/NearbyManager.kt:167:111 'var isSpeakerphoneOn: Boolean' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/nearby/NearbyManager.kt:172:92 'var isSpeakerphoneOn: Boolean' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/nearby/NearbyManager.kt:202:102 'var isSpeakerphoneOn: Boolean' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/nearby/NearbyManager.kt:683:36 'static field STATUS_BLUETOOTH_ERROR: Int' is deprecated. Deprecated in Java.
+w: file:///storage/emulated/0/XxX/AxzoraOS/app/src/main/java/com/axzora/os/nearby/NearbyManager.kt:704:40 'static field STATUS_BLUETOOTH_ERROR: Int' is deprecated. Deprecated in Java.
+
+BUILD SUCCESSFUL in 2m 54s
+14 actionable tasks: 6 executed, 8 up-to-date

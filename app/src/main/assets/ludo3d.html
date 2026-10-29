@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Axzora Ludo 3D</title>
+<script src="https://cdn.babylonjs.com/babylon.js"></script>
+<style>
+  :root{--red:#ef4444;--green:#22c55e;--yellow:#eab308;--blue:#3b82f6;--accent:#f0a73c;--ink:#eef4ff}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;height:100%;background:#070b12;overflow:hidden;font-family:'Segoe UI',system-ui,Roboto,sans-serif;color:var(--ink)}
+  #c{width:100vw;height:100vh;display:block;touch-action:none;outline:none}
+  #hud{position:fixed;left:0;right:0;bottom:0;z-index:5;padding:14px;display:flex;align-items:center;
+    justify-content:space-between;gap:14px;background:linear-gradient(transparent,rgba(4,7,12,.9) 40%)}
+  #info{display:flex;flex-direction:column;gap:2px}
+  #turn{font-weight:800;font-size:17px;display:flex;align-items:center;gap:8px}
+  #msg{font-size:13px;color:#9fb0c6;min-height:16px}
+  #dot{width:12px;height:12px;border-radius:50%;box-shadow:0 0 10px currentColor}
+  #roll{width:76px;height:76px;border:none;border-radius:20px;background:radial-gradient(circle at 35% 30%,#fff,#dfe6f0);
+    color:#111;font-size:34px;font-weight:900;box-shadow:0 8px 22px rgba(0,0,0,.5),inset 0 3px 6px rgba(255,255,255,.7);
+    cursor:pointer;transition:transform .12s}
+  #roll:active{transform:scale(.9)}
+  #roll:disabled{opacity:.55}
+  #stake{position:fixed;top:12px;left:0;right:0;text-align:center;z-index:5;color:var(--accent);font-weight:800;font-size:14px;text-shadow:0 2px 8px #000}
+  #win{position:fixed;inset:0;z-index:8;display:none;align-items:center;justify-content:center;flex-direction:column;
+    background:rgba(4,7,12,.72);backdrop-filter:blur(3px);gap:14px}
+  #win h2{font-size:34px;margin:0}#win .b{background:var(--accent);color:#111;border:none;border-radius:14px;padding:12px 22px;font-weight:800;font-size:16px}
+</style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+  <canvas id="fx" style="position:fixed;inset:0;z-index:7;pointer-events:none"></canvas>
+  <audio id="s-roll" src="ludoclassic/assets/dice-roll.mp3" preload="auto"></audio>
+  <audio id="s-win" src="ludoclassic/assets/win.mp3" preload="auto"></audio>
+  <div id="stake"></div>
+  <div id="hud">
+    <div id="info"><div id="turn"><span id="dot"></span><span id="turntxt">Your turn</span></div><div id="msg">Tap the dice</div></div>
+    <button id="roll">🎲</button>
+  </div>
+  <div id="win"><h2 id="wintxt"></h2><button class="b" onclick="location.reload()">Play again</button></div>
+<script>
+(function(){
+  // ---------- rules geometry (same as the 2D board) ----------
+  const PATH=[[6,1],[6,2],[6,3],[6,4],[6,5],[5,6],[4,6],[3,6],[2,6],[1,6],[0,6],[0,7],[0,8],[1,8],[2,8],[3,8],[4,8],[5,8],[6,9],[6,10],[6,11],[6,12],[6,13],[6,14],[7,14],[8,14],[8,13],[8,12],[8,11],[8,10],[8,9],[9,8],[10,8],[11,8],[12,8],[13,8],[14,8],[14,7],[14,6],[13,6],[12,6],[11,6],[10,6],[9,6],[8,5],[8,4],[8,3],[8,2],[8,1],[8,0],[7,0],[6,0]];
+  const SAFE=new Set([0,8,13,21,26,34,39,47]);
+  const HOME={r:[[7,1],[7,2],[7,3],[7,4],[7,5]],g:[[1,7],[2,7],[3,7],[4,7],[5,7]],y:[[7,13],[7,12],[7,11],[7,10],[7,9]],b:[[13,7],[12,7],[11,7],[10,7],[9,7]]};
+  const BASECELLS={r:[[1,1],[1,4],[4,1],[4,4]],g:[[1,10],[1,13],[4,10],[4,13]],y:[[10,10],[10,13],[13,10],[13,13]],b:[[10,1],[10,4],[13,1],[13,4]]};
+  const PLAYERS=[{c:'r',name:'You',entry:0,ai:false},{c:'g',name:'Green',entry:13,ai:true},{c:'y',name:'Yellow',entry:26,ai:true},{c:'b',name:'Blue',entry:39,ai:true}];
+  const HEX={r:'#ef4444',g:'#22c55e',y:'#eab308',b:'#3b82f6'};
+  const state=PLAYERS.map(p=>({...p,toks:[-1,-1,-1,-1]}));
+  let turn=0,dice=0,awaitingMove=false,rolledSix=false,busy=false;
+
+  // ---------- babylon scene ----------
+  const canvas=document.getElementById('c');
+  const engine=new BABYLON.Engine(canvas,true,{preserveDrawingBuffer:true,stencil:true});
+  const scene=new BABYLON.Scene(engine); scene.clearColor=BABYLON.Color4.FromHexString('#070b12ff');
+  const cam=new BABYLON.ArcRotateCamera('cam',-Math.PI/2,0.72,20,new BABYLON.Vector3(0,0,0),scene);
+  cam.attachControl(canvas,true); cam.lowerBetaLimit=0.25; cam.upperBetaLimit=1.15; cam.lowerRadiusLimit=13; cam.upperRadiusLimit=30; cam.wheelPrecision=30;
+  const hemi=new BABYLON.HemisphericLight('h',new BABYLON.Vector3(0,1,0),scene); hemi.intensity=.75;
+  const dir=new BABYLON.DirectionalLight('d',new BABYLON.Vector3(-1,-2,-1),scene); dir.position=new BABYLON.Vector3(8,16,8); dir.intensity=.85;
+  const shadow=new BABYLON.ShadowGenerator(1024,dir); shadow.useBlurExponentialShadowMap=true; shadow.blurKernel=32;
+  const glow=new BABYLON.GlowLayer('glow',scene); glow.intensity=.6;
+
+  const T=1, OFF=7;                       // tile size, grid centre
+  const wx=(r,c)=>new BABYLON.Vector3((c-OFF)*T,0,(OFF-r)*T);
+  const col=(h)=>{const m=new BABYLON.StandardMaterial('m',scene);const cc=BABYLON.Color3.FromHexString(h);m.diffuseColor=cc;m.specularColor=new BABYLON.Color3(.3,.3,.3);return m;};
+  const mats={base:col('#0e1622'),white:col('#e8eef7'),r:col(HEX.r),g:col(HEX.g),y:col(HEX.y),b:col(HEX.b),safe:col('#c7d2e0')};
+
+  // board slab
+  const slab=BABYLON.MeshBuilder.CreateBox('slab',{width:15.6,depth:15.6,height:.5},scene);
+  slab.position.y=-.3; slab.material=col('#111a28'); slab.receiveShadows=true;
+
+  function cellColor(r,c){
+    if(r===7&&c===7) return null;                        // centre (built separately)
+    for(const k in HOME) for(const [hr,hc] of HOME[k]) if(hr===r&&hc===c) return mats[k];
+    if(r<6&&c<6) return mats.r; if(r<6&&c>8) return mats.g; if(r>8&&c>8) return mats.y; if(r>8&&c<6) return mats.b;
+    const inCross=(r>=6&&r<=8)||(c>=6&&c<=8);
+    if(inCross){ const idx=PATH.findIndex(p=>p[0]===r&&p[1]===c); return SAFE.has(idx)?mats.safe:mats.white; }
+    return null;
+  }
+  // tiles
+  for(let r=0;r<15;r++)for(let c=0;c<15;c++){
+    const m=cellColor(r,c); if(!m) continue;
+    const isBase=(r<6&&c<6)||(r<6&&c>8)||(r>8&&c>8)||(r>8&&c<6);
+    const t=BABYLON.MeshBuilder.CreateBox('t',{width:.94,depth:.94,height:isBase?.12:.18},scene);
+    const p=wx(r,c); t.position.set(p.x,isBase?.0:.02,p.z); t.material=m; t.receiveShadows=true;
+  }
+  // centre home — a golden pyramid
+  const centre=BABYLON.MeshBuilder.CreateCylinder('centre',{diameterTop:0,diameterBottom:3,height:1.2,tessellation:4},scene);
+  centre.position.set(0,.3,0); centre.rotation.y=Math.PI/4; const cm=col('#f0a73c'); cm.emissiveColor=BABYLON.Color3.FromHexString('#5a3e12'); centre.material=cm; shadow.addShadowCaster(centre);
+
+  // ---------- pawns ----------
+  function makePawn(hex){
+    const base=BABYLON.MeshBuilder.CreateCylinder('pb',{diameterTop:.18,diameterBottom:.42,height:.5,tessellation:20},scene);
+    const ball=BABYLON.MeshBuilder.CreateSphere('ph',{diameter:.34,segments:12},scene); ball.position.y=.42;
+    const pawn=BABYLON.Mesh.MergeMeshes([base,ball],true,true,undefined,false,true);
+    const m=new BABYLON.StandardMaterial('pm',scene); const cc=BABYLON.Color3.FromHexString(hex);
+    m.diffuseColor=cc; m.emissiveColor=cc.scale(.25); m.specularColor=new BABYLON.Color3(.6,.6,.6); m.specularPower=64;
+    pawn.material=m; pawn.scaling.setAll(.62); shadow.addShadowCaster(pawn); return pawn;
+  }
+  const pawns=state.map(pl=>pl.toks.map(()=>makePawn(HEX[pl.c])));
+
+  function cellOf(pl,prog,ti){
+    if(prog<0) return BASECELLS[pl.c][ti];
+    if(prog<=50) return PATH[(pl.entry+prog)%52];
+    if(prog<=55) return HOME[pl.c][prog-51];
+    return [7,7];
+  }
+  function placePawn(pi,ti,instant){
+    const pl=state[pi]; const [r,c]=cellOf(pl,pl.toks[ti],ti);
+    const w=wx(r,c); w.y=pl.toks[ti]>=56?.9:.32;
+    // small fan-out so co-located pawns don't perfectly overlap
+    let same=0; state.forEach((p2,pj)=>p2.toks.forEach((pg2,tj)=>{ if((pj<pi)||(pj===pi&&tj<ti)){ const cc=cellOf(p2,pg2,tj); if(cc[0]===r&&cc[1]===c) same++; }}));
+    w.x+=(same%2)*.22-.11; w.z+=Math.floor(same/2)*.22-.11;
+    if(instant){ pawns[pi][ti].position.copyFrom(w); } else { pawns[pi][ti]._target=w; }
+  }
+  function renderAll(instant){ state.forEach((pl,pi)=>pl.toks.forEach((_,ti)=>placePawn(pi,ti,instant))); }
+
+  // tween pawns toward their target with a hop
+  scene.onBeforeRenderObservable.add(()=>{
+    const dt=engine.getDeltaTime()/1000;
+    pawns.forEach(row=>row.forEach(p=>{ if(p._target){
+      const d=p._target.subtract(p.position); if(d.length()<.02){ p.position.copyFrom(p._target); p._target=null; return; }
+      p.position.addInPlace(d.scale(Math.min(1,dt*9)));
+      p.position.y=p._target.y+Math.abs(Math.sin(performance.now()/120))*0; // settle
+    }}));
+    centre.rotation.y+=dt*.4;
+  });
+
+  // ---------- 3D dice ----------
+  const die=BABYLON.MeshBuilder.CreateBox('die',{size:1.1},scene);
+  die.position.set(0,3.2,4.2); const dm=new BABYLON.StandardMaterial('dm',scene);
+  const dtex=new BABYLON.DynamicTexture('dtex',{width:768,height:512},scene,true); dm.diffuseTexture=dtex; die.material=dm; shadow.addShadowCaster(die);
+  // draw a 3x2 pip atlas (faces 1..6) and map with faceUV
+  (function drawDice(){const ctx=dtex.getContext();const W=256,H=256;ctx.fillStyle='#f6f7fb';ctx.fillRect(0,0,768,512);
+    const pip=(fx,fy,px,py)=>{ctx.beginPath();ctx.fillStyle='#101826';ctx.arc(fx*256+px*256,fy*256+py*256,20,0,7);ctx.fill();};
+    const P={1:[[.5,.5]],2:[[.28,.28],[.72,.72]],3:[[.26,.26],[.5,.5],[.74,.74]],4:[[.28,.28],[.72,.28],[.28,.72],[.72,.72]],5:[[.26,.26],[.74,.26],[.5,.5],[.26,.74],[.74,.74]],6:[[.28,.24],[.28,.5],[.28,.76],[.72,.24],[.72,.5],[.72,.76]]};
+    const pos=[[0,0],[1,0],[2,0],[0,1],[1,1],[2,1]];
+    for(let f=1;f<=6;f++){const [gx,gy]=pos[f-1];ctx.strokeStyle='#c9d2e0';ctx.strokeRect(gx*256+3,gy*256+3,250,250);P[f].forEach(([px,py])=>pip(gx,gy,px,py));}
+    dtex.update();
+  })();
+  const uv=[]; const map=[[2,0],[0,1],[1,0],[1,1],[0,0],[2,1]]; // box face order -> atlas cell
+  die.faceUV=new Array(6); for(let i=0;i<6;i++){const [gx,gy]=map[i];die.faceUV[i]=new BABYLON.Vector4(gx/3,gy/2,(gx+1)/3,(gy+1)/2);}
+  const box2=BABYLON.MeshBuilder.CreateBox('die',{size:1.1,faceUV:die.faceUV,wrap:true},scene);
+  box2.position.copyFrom(die.position); box2.material=dm; shadow.addShadowCaster(box2); die.dispose(); const DIE=box2;
+  // rotation that lands a given value face-up (approx, decorative)
+  const FACE={1:[0,0,0],2:[0,0,-Math.PI/2],3:[Math.PI/2,0,0],4:[-Math.PI/2,0,0],5:[0,0,Math.PI/2],6:[Math.PI,0,0]};
+
+  // ---------- game logic ----------
+  const rollBtn=document.getElementById('roll'), turntxt=document.getElementById('turntxt'), dot=document.getElementById('dot'), msg=document.getElementById('msg');
+  function setTurn(){const pl=state[turn];turntxt.textContent=pl.ai?pl.name+"'s turn":'Your turn';dot.style.color=HEX[pl.c];rollBtn.disabled=pl.ai||busy||awaitingMove;}
+  function canMove(pl,prog){if(prog>=56)return false;if(prog<0)return dice===6;return prog+dice<=56;}
+  function movableIdx(pi){const pl=state[pi];return pl.toks.map((p,i)=>i).filter(i=>canMove(pl,pl.toks[i]));}
+
+  function sfx(id){ try{ const a=document.getElementById(id); if(a){ a.currentTime=0; a.volume=0.6; a.play().catch(()=>{}); } }catch(e){} }
+  function confetti(){ const cv=document.getElementById('fx'); const cx=cv.getContext('2d');
+    cv.width=innerWidth; cv.height=innerHeight; const cols=['#ef4444','#22c55e','#eab308','#3b82f6','#f0a73c','#ffffff'];
+    const P=Array.from({length:160},()=>({x:Math.random()*cv.width,y:-20-Math.random()*cv.height,r:4+Math.random()*6,
+      vy:2+Math.random()*4,vx:-1.5+Math.random()*3,rot:Math.random()*6,vr:-.2+Math.random()*.4,c:cols[Math.floor(Math.random()*cols.length)]}));
+    let f=0; (function loop(){ f++; cx.clearRect(0,0,cv.width,cv.height);
+      P.forEach(p=>{ p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr; cx.save(); cx.translate(p.x,p.y); cx.rotate(p.rot);
+        cx.fillStyle=p.c; cx.fillRect(-p.r/2,-p.r/2,p.r,p.r*1.6); cx.restore(); });
+      if(f<260) requestAnimationFrame(loop); else cx.clearRect(0,0,cv.width,cv.height); })(); }
+  function roll(){ if(busy||awaitingMove) return; const pl=state[turn]; if(pl.ai&&false) return; busy=true; setTurn(); sfx('s-roll');
+    const val=1+Math.floor(Math.random()*6); let spins=0;
+    const iv=setInterval(()=>{ DIE.rotation.set(Math.random()*6,Math.random()*6,Math.random()*6); spins++;
+      if(spins>10){clearInterval(iv); const f=FACE[val]; DIE.rotation.set(f[0],f[1],f[2]); dice=val; rolledSix=(val===6);
+        msg.textContent=(pl.ai?pl.name:'You')+' rolled '+val; const mv=movableIdx(turn); busy=false;
+        if(mv.length===0){ setTimeout(nextTurn,750); return; }
+        if(pl.ai){ setTimeout(()=>doMove(turn,aiPick(turn,mv)),500); } else { awaitingMove=true; highlight(true); msg.textContent='Rolled '+val+' — tap a pawn'; }
+      }
+    },55);
+  }
+  function highlight(on){ const mv=on?movableIdx(turn):[]; state.forEach((pl,pi)=>pl.toks.forEach((_,ti)=>{
+    const p=pawns[pi][ti]; const can=on&&pi===turn&&!pl.ai&&mv.includes(ti);
+    p.renderOutline=can; p.outlineColor=BABYLON.Color3.White(); p.outlineWidth=.06;
+    p._hop=can; }));
+  }
+  function aiPick(pi,mv){const pl=state[pi];let best=mv[0],sc=-1;for(const i of mv){let s=pl.toks[i];const np=pl.toks[i]<0?0:pl.toks[i]+dice;if(np<=50){const idx=(pl.entry+np)%52;const [r,c]=PATH[idx];if(!SAFE.has(idx)&&state.some((op,oj)=>oj!==pi&&op.toks.some((t)=>t>=0&&t<=50&&PATH[(op.entry+t)%52][0]===r&&PATH[(op.entry+t)%52][1]===c)))s+=100;}if(pl.toks[i]<0)s+=20;if(s>sc){sc=s;best=i;}}return best;}
+
+  function doMove(pi,ti){ if(busy)return; busy=true; awaitingMove=false; highlight(false);
+    const pl=state[pi]; let prog=pl.toks[ti]; prog=prog<0?0:prog+dice; pl.toks[ti]=prog;
+    if(prog<=50){ const idx=(pl.entry+prog)%52; if(!SAFE.has(idx)){ const [r,c]=PATH[idx];
+      state.forEach((op,oj)=>{ if(oj===pi)return; op.toks.forEach((o2,oti)=>{ if(o2>=0&&o2<=50){const [orr,occ]=PATH[(op.entry+o2)%52]; if(orr===r&&occ===c){op.toks[oti]=-1; msg.textContent=(pl.ai?pl.name:'You')+' captured '+op.name+'!';}}}); });
+    }}
+    renderAll(false);
+    setTimeout(()=>{ if(pl.toks.every(t=>t>=56)){win(pi);return;} busy=false;
+      if(rolledSix){ if(!pl.ai){msg.textContent='Six! Roll again';setTurn();} else setTimeout(roll,500); } else nextTurn();
+    },520);
+  }
+  function nextTurn(){ awaitingMove=false; rolledSix=false; busy=false; turn=(turn+1)%4; setTurn(); const pl=state[turn]; if(pl.ai) setTimeout(roll,650); else msg.textContent='Your turn — tap the dice'; }
+  function win(pi){ const pl=state[pi]; sfx('s-win'); confetti();
+    try{ if(window.AxzoraGame&&AxzoraGame.onWin) AxzoraGame.onWin(pl.ai?pl.name:'You'); }catch(e){}
+    document.getElementById('wintxt').textContent=(pl.ai?pl.name:'You')+' won! 🏆'; document.getElementById('win').style.display='flex'; }
+
+  // pawn taps
+  scene.onPointerDown=(evt,pick)=>{ if(!awaitingMove||busy||!pick.hit) return; const m=pick.pickedMesh; if(!m)return;
+    for(let pi=0;pi<4;pi++)for(let ti=0;ti<4;ti++){ if(pawns[pi][ti]===m && pi===turn && !state[pi].ai && movableIdx(pi).includes(ti)){ doMove(pi,ti); return; } }
+  };
+  rollBtn.onclick=roll;
+
+  // Happy Paisa stake banner
+  try{ const stk=(window.AxzoraGame&&AxzoraGame.stake)?AxzoraGame.stake():0; if(stk>0) document.getElementById('stake').textContent='Playing for '+stk+' ₴ · pot '+(stk*4)+' ₴'; }catch(e){}
+
+  renderAll(true); setTurn();
+  engine.runRenderLoop(()=>scene.render());
+  window.addEventListener('resize',()=>engine.resize());
+})();
+</script>
+</body>
+</html>

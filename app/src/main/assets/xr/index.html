@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Satyug XR Room v1 · Babylon 9.30</title>
+<script src="./babylon.js"></script>
+<style>
+  :root{--accent:#f0a73c;--bg:#0b0f16;--panel:#121a26;--ink:#e8eef7;--line:#26344a}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);overflow:hidden;
+    font-family:'Segoe UI',system-ui,Roboto,sans-serif}
+  #c{width:100vw;height:100vh;display:block;touch-action:none;outline:none}
+  #top{position:fixed;top:10px;left:0;right:0;text-align:center;z-index:5;pointer-events:none}
+  #title{font-weight:700;font-size:15px;text-shadow:0 2px 8px #000}
+  #title b{color:var(--accent)}
+  #say{font-size:13px;color:var(--accent);min-height:18px;text-shadow:0 2px 8px #000;margin-top:2px}
+  #state{position:fixed;top:12px;right:12px;z-index:5;background:rgba(10,16,24,.7);
+    border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:11px;color:#9fb0c6}
+  #world{position:fixed;top:46px;right:12px;z-index:5;background:rgba(10,16,24,.7);
+    border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:11px;
+    color:#9fb0c6;font-variant-numeric:tabular-nums;max-width:60vw;text-align:right}
+  #world b{color:var(--accent);font-weight:700}
+  #world.off{color:#c88}
+  #fatal{position:fixed;inset:0;display:none;place-items:center;z-index:20;padding:24px;
+    background:var(--bg);text-align:center;font-size:14px;line-height:1.5}
+  #ui{position:fixed;left:0;right:0;bottom:0;z-index:5;padding:12px;
+    background:linear-gradient(transparent,rgba(6,10,16,.92) 30%);display:flex;flex-direction:column;
+    gap:8px;align-items:center}
+  #bar{display:flex;gap:8px;width:100%;max-width:560px}
+  #cmd{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:12px;color:var(--ink);
+    padding:12px 14px;font-size:15px;outline:none}
+  .b{background:var(--accent);color:#111;border:none;border-radius:12px;padding:0 16px;font-weight:800;
+    font-size:15px;cursor:pointer;min-width:52px}
+  .b.mic{background:#1b2740;color:var(--accent);font-size:20px}
+  #hint{font-size:12px;color:#9fb0c6;text-align:center;max-width:560px}
+</style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+  <div id="fatal"></div>
+  <div id="top"><div id="title">Satyug <b>XR Room v1</b> · Babylon 9.30</div><div id="say"></div></div>
+  <div id="state"></div>
+  <div id="world">world · connecting…</div>
+  <div id="ui">
+    <div id="hint">One room · Aria + Mr Happy · one object · one command. Try: "red", "blue", "gold", "day", "night", "grow", "shrink", "spin fast", "spin slow", "greet", "world".</div>
+    <div id="bar">
+      <input id="cmd" placeholder="Tell the room…" autocomplete="off">
+      <button class="b mic" id="mic">🎤</button>
+      <button class="b" id="go">Go</button>
+    </div>
+  </div>
+<script src="./main.js"></script>
+</body>
+</html>

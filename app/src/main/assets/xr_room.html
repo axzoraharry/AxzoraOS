@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Satyug XR Room v0</title>
+<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+<style>
+  :root{--accent:#f0a73c;--bg:#0b0f16;--panel:#121a26;--ink:#e8eef7;--line:#26344a}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);
+    font-family:'Segoe UI',system-ui,Roboto,sans-serif;overflow:hidden}
+  #ui{position:fixed;left:0;right:0;bottom:0;z-index:10;padding:12px;
+    background:linear-gradient(transparent,rgba(6,10,16,.92) 30%);
+    display:flex;flex-direction:column;gap:8px;align-items:center}
+  #bar{display:flex;gap:8px;width:100%;max-width:560px}
+  #cmd{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    color:var(--ink);padding:12px 14px;font-size:15px;outline:none}
+  .b{background:var(--accent);color:#111;border:none;border-radius:12px;padding:0 16px;
+    font-weight:800;font-size:15px;cursor:pointer;display:grid;place-items:center;min-width:52px}
+  .b.mic{background:#1b2740;color:var(--accent);font-size:20px}
+  #hint{font-size:12px;color:#9fb0c6;text-align:center;max-width:560px}
+  #say{position:fixed;top:14px;left:0;right:0;text-align:center;z-index:10;
+    font-size:13px;color:var(--accent);min-height:18px;text-shadow:0 2px 8px #000}
+  #title{position:fixed;top:36px;left:0;right:0;text-align:center;z-index:10;
+    font-size:15px;font-weight:700;color:#fff;text-shadow:0 2px 8px #000}
+  #title span{color:var(--accent)}
+</style>
+</head>
+<body>
+  <div id="say"></div>
+  <div id="title">Satyug <span>XR Room v0</span></div>
+
+  <a-scene background="color: #0b0f16" vr-mode-ui="enabled: true" renderer="colorManagement:true">
+    <a-assets></a-assets>
+
+    <!-- the room -->
+    <a-entity id="room">
+      <!-- floor -->
+      <a-plane id="floor" position="0 0 0" rotation="-90 0 0" width="10" height="10"
+        color="#152033" shadow="receive:true"></a-plane>
+      <a-entity light="type: ambient; intensity: 0.55; color: #8899bb"></a-entity>
+      <a-entity id="keylight" light="type: point; intensity: 0.9; color: #ffffff" position="2 4 2"></a-entity>
+      <!-- 4 walls -->
+      <a-box class="wall" position="0 1.5 -5" width="10" height="3" depth="0.1" color="#1b2740"></a-box>
+      <a-box class="wall" position="0 1.5 5"  width="10" height="3" depth="0.1" color="#1b2740"></a-box>
+      <a-box class="wall" position="-5 1.5 0" width="0.1" height="3" depth="10" color="#1b2740"></a-box>
+      <a-box class="wall" position="5 1.5 0"  width="0.1" height="3" depth="10" color="#1b2740"></a-box>
+      <!-- a centrepiece the voice command will change -->
+      <a-torus-knot id="core" position="0 1.6 -2" color="#f0a73c" radius="0.5" radius-tubular="0.09"
+        animation="property: rotation; to: 0 360 0; loop: true; dur: 9000; easing: linear"></a-torus-knot>
+    </a-entity>
+
+    <!-- the avatar (an NPC that greets/reacts) -->
+    <a-entity id="avatar" position="1.6 0 -2.4">
+      <a-sphere position="0 1.5 0" radius="0.28" color="#4f86ff"></a-sphere>          <!-- head -->
+      <a-cylinder position="0 0.85 0" radius="0.28" height="1.1" color="#3b82f6"></a-cylinder> <!-- body -->
+      <a-text id="avname" value="Aria" align="center" position="0 2.0 0" color="#fff" width="4"></a-text>
+      <a-entity animation="property: position; dir: alternate; to: 1.6 0.08 -2.4; loop: true; dur: 1600; easing: easeInOutSine"></a-entity>
+    </a-entity>
+
+    <!-- player rig with camera + look controls; WASD on desktop, drag on mobile -->
+    <a-entity id="rig" position="0 1.6 3">
+      <a-camera wasd-controls="acceleration:28" look-controls="pointerLockEnabled:false"></a-camera>
+    </a-entity>
+  </a-scene>
+
+  <div id="ui">
+    <div id="hint">One room · one avatar (Aria) · one command line. Try: "red", "blue", "green", "gold", "day", "night", "spin fast", "spin slow", "grow", "shrink", "cube", "sphere", "greet".</div>
+    <div id="bar">
+      <input id="cmd" placeholder="Tell the room what to change…" autocomplete="off">
+      <button class="b mic" id="mic" title="Voice">🎤</button>
+      <button class="b" id="go">Go</button>
+    </div>
+  </div>
+
+<script>
+(function(){
+  const say=(t)=>{ document.getElementById('say').textContent=t;
+    clearTimeout(say._t); say._t=setTimeout(()=>document.getElementById('say').textContent='',3500); };
+  const core=()=>document.getElementById('core');
+  const scene=document.querySelector('a-scene');
+  const COLORS={red:'#ef4444',blue:'#3b82f6',green:'#22c55e',gold:'#f0a73c',
+    yellow:'#eab308',purple:'#a855f7',white:'#ffffff',orange:'#fb923c'};
+
+  // ONE command pipeline — the SAME function voice, typing, and (later)
+  // Mr Happy all call. This is the seam the AI Game Master plugs into.
+  window.satyugCommand = function(raw){
+    const t=(raw||'').toLowerCase().trim();
+    if(!t) return 'empty';
+    let did='';
+    // colour of the centrepiece
+    for(const k in COLORS){ if(t.includes(k)){ core().setAttribute('color',COLORS[k]); did='color '+k; } }
+    // scene day / night
+    if(t.includes('day')){ scene.setAttribute('background','color: #cfe0f5'); did='day'; }
+    if(t.includes('night')){ scene.setAttribute('background','color: #05070c'); did='night'; }
+    // spin speed
+    if(t.includes('fast')){ core().setAttribute('animation','property:rotation; to:0 360 0; loop:true; dur:2500; easing:linear'); did='spin fast'; }
+    if(t.includes('slow')){ core().setAttribute('animation','property:rotation; to:0 360 0; loop:true; dur:16000; easing:linear'); did='spin slow'; }
+    // size
+    if(t.includes('grow')||t.includes('big')){ core().setAttribute('scale','1.8 1.8 1.8'); did='grow'; }
+    if(t.includes('shrink')||t.includes('small')){ core().setAttribute('scale','0.6 0.6 0.6'); did='shrink'; }
+    // swap the centrepiece shape
+    if(t.includes('cube')||t.includes('box')){ swapShape('a-box',{depth:'1',width:'1',height:'1'}); did='cube'; }
+    if(t.includes('sphere')||t.includes('ball')){ swapShape('a-sphere',{radius:'0.6'}); did='sphere'; }
+    if(t.includes('knot')){ swapShape('a-torus-knot',{radius:'0.5','radius-tubular':'0.09'}); did='knot'; }
+    // avatar greets
+    if(t.includes('greet')||t.includes('hello')||t.includes('hi ')){ say('Aria: Welcome to your world, sir.'); did='greet'; }
+    if(did) say('✓ '+did); else say('Room heard: "'+t+'" (no match)');
+    return did||'nomatch';
+  };
+
+  function swapShape(tag,attrs){
+    const old=core(); const p=old.parentNode;
+    const el=document.createElement(tag);
+    el.id='core'; el.setAttribute('position','0 1.6 -2');
+    el.setAttribute('color', old.getAttribute('color')||'#f0a73c');
+    for(const k in attrs) el.setAttribute(k,attrs[k]);
+    el.setAttribute('animation','property:rotation; to:0 360 0; loop:true; dur:9000; easing:linear');
+    p.replaceChild(el,old);
+  }
+
+  // wire the UI
+  const cmd=document.getElementById('cmd');
+  const run=()=>{ const v=cmd.value; cmd.value=''; window.satyugCommand(v); };
+  document.getElementById('go').onclick=run;
+  cmd.addEventListener('keydown',e=>{ if(e.key==='Enter') run(); });
+
+  // voice via Web Speech API when available; falls back to typing
+  const mic=document.getElementById('mic');
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(SR){
+    const rec=new SR(); rec.lang='en-US'; rec.interimResults=false; rec.maxAlternatives=1;
+    mic.onclick=()=>{ try{ rec.start(); say('listening…'); }catch(e){} };
+    rec.onresult=e=>{ const txt=e.results[0][0].transcript; say('“'+txt+'”'); window.satyugCommand(txt); };
+    rec.onerror=()=>say('mic error — type instead');
+  } else {
+    mic.onclick=()=>say('voice not available here — type the command');
+  }
+
+  window.addEventListener('load',()=>say('Room ready. Say or type a command.'));
+})();
+</script>
+</body>
+</html>
